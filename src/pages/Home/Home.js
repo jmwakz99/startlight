@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import ApiService from "../../services/ApiService";
+
 import Pagination from "../../components/Pagination/Pagination";
 import Spinners from "../../components/Spinners/Spinners";
 import Card from "../../components/Card/Card"
@@ -9,45 +9,47 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      hotels: [],
       currentPage: 1,
       itemsPerPage: 10
     }
   }
-  componentDidMount() {
-    ApiService.getHotels().then(hotels => {
-      this.setState({
-        hotels: hotels
-      })
 
-    }).catch(error => {
-      console.log(error)
-    })
-
-  }
   render() {
-    const { history } = this.props;
-    const { hotels, currentPage, itemsPerPage } = this.state;
-    let indexOfLastItem;
-    let indexOfFirstItem;
-    let currentItems;
-    let paginate;
+    const { history, hotels } = this.props;
+    console.log(hotels)
+    const { currentPage, itemsPerPage } = this.state;
     let hotelList;
-    let nextPage;
-    let prevPage;
-    console.log(history)
+    let indexOfLastItem = currentPage * itemsPerPage;
+    let indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    let currentItems = hotels.slice(indexOfFirstItem, indexOfLastItem);
+
+    let paginate = pageNum => this.setState({ currentPage: pageNum });
+    let nextPage = () => {
+      if (this.state.currentPage >= Math.ceil(hotels.length / 10)) {
+        return;
+
+      } else {
+        this.setState({ currentPage: currentPage + 1 });
+
+      }
+
+    };
+    let prevPage = () => {
+      if (this.state.currentPage <= 1) {
+        return;
+
+      } else {
+        this.setState({ currentPage: currentPage - 1 })
+
+      }
+
+    };
 
     if (hotels.length > 0) {
-      indexOfLastItem = currentPage * itemsPerPage;
-      indexOfFirstItem = indexOfLastItem - itemsPerPage;
-      currentItems = hotels.slice(indexOfFirstItem, indexOfLastItem);
 
-      paginate = pageNum => this.setState({ currentPage: pageNum });
-      nextPage = () => this.setState({ currentPage: currentPage + 1 });
-      prevPage = () => this.setState({ currentPage: currentPage - 1 });
 
       hotelList = currentItems.map(hotel => (
-        <Card key={hotel.id} name={hotel.name} onClick={() => history.push(`/hotel/${hotel.id}`)} neighbourhood={hotel.neighbourhood} image={hotel.optimizedThumbUrls.srpDesktop} />
+        <Card key={hotel.id} name={hotel.name} onClick={() => history.push({ pathname: `/hotel/${hotel.id}`, state: { item: hotel } })} neighbourhood={hotel.neighbourhood} image={hotel.optimizedThumbUrls.srpDesktop} />
 
 
       ))

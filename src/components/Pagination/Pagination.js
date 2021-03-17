@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 function Pagination({ itemsPerPage, totalItems, paginate, nextPage, prevPage }) {
   const pageNumbers = [];
@@ -11,19 +10,19 @@ function Pagination({ itemsPerPage, totalItems, paginate, nextPage, prevPage }) 
     <nav className="mx-auto" aria-label="Page navigation example">
       <ul className="pagination justify-content-center">
         <li className="page-item">
-          <NavLink className="page-link" to="" onClick={() => prevPage()}>
+          <span className="page-link" style={{ cursor: "pointer" }} onClick={() => prevPage()}>
             <span aria-hidden="true">&laquo;</span>
-          </NavLink>
+          </span>
         </li>
         {pageNumbers.map(num => (
           <li key={num}>
-            <NavLink onClick={() => paginate(num)} className="page-link" to="">{num}</NavLink>
+            <span style={{ cursor: "pointer" }} onClick={() => paginate(num)} className="page-link" to="">{num}</span>
           </li>
         ))}
         <li className="page-item">
-          <NavLink className="page-link" to="" onClick={() => nextPage()}>
+          <span className="page-link" style={{ cursor: "pointer" }} onClick={() => nextPage()} >
             <span aria-hidden="true">&raquo;</span>
-          </NavLink>
+          </span>
         </li>
 
       </ul>
@@ -31,4 +30,4 @@ function Pagination({ itemsPerPage, totalItems, paginate, nextPage, prevPage }) 
   )
 }
 
-export default Pagination
+export default Pagination;

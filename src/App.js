@@ -6,12 +6,32 @@ import {
 
 } from "react-router-dom";
 
+import ApiService from "./services/ApiService";
 import Navigation from "./parts/Navigation/Navigation";
 import HotelDetails from "./pages/HotelDetails/HotelDetails";
 import Home from "./pages/Home/Home";
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      hotels: [],
+
+    }
+  }
+
+  componentDidMount() {
+    ApiService.getHotels().then(hotels => {
+      this.setState({
+        hotels: hotels
+      })
+
+    }).catch(error => {
+      console.log(error)
+    })
+
+  }
   render() {
     return (
       <Router>
@@ -19,7 +39,7 @@ class App extends Component {
           <Navigation />
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home hotels={this.state.hotels} />
 
             </Route>
             <Route exact path="/hotel/:id">
