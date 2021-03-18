@@ -1,15 +1,20 @@
 import React from 'react'
 
+import { checkStars } from "../../utils/general";
 import "./Rating.css";
-function Rating() {
+function Rating({ value }) {
+
+  checkStars(value)
   return (
+
     <div>
-      <div class="main">
-        <i class="fa fa-star checked" id="one"></i>
-        <i class="fa fa-star unchecked" id="two"></i>
-        <i class="fa fa-star unchecked" id="three"></i>
-        <i class="fa fa-star unchecked" id="four"></i>
-        <i class="fa fa-star unchecked" id="five"></i>
+      <div className="main">
+
+        <i className="fa fa-star unchecked"></i>
+        <i className="fa fa-star unchecked"></i>
+        <i className="fa fa-star unchecked"></i>
+        <i className="fa fa-star unchecked"></i>
+        <i className="fa fa-star unchecked"></i>
       </div >
     </div>
   )

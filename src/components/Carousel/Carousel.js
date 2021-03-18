@@ -1,27 +1,26 @@
 import React from 'react'
 
-
 import { convertToString } from "../../utils/general";
 import Spinners from "../../components/Spinners/Spinners";
 import Rating from "../../components/Rating/Rating";
 import "./Carousel.css";
-function Carousel({ name, locality, images }) {
+function Carousel({ name, locality, images, rating, refresh }) {
   let carouselItemLarge;
   let carouselItemSmall;
   if (images.length > 0) {
     carouselItemLarge = images.map((image, index) => (
-      <div className={`carousel-item ${index === 0 ? 'active' : null}`}> <img src={image.sizeEightHundred} alt="Hotel" /> </div>
+      <div key={index} className={`carousel-item ${index === 0 ? 'active' : null}`}> <img src={image.sizeEightHundred} alt="Hotel" /> </div>
 
     ))
     carouselItemSmall = images.map((image, index) => (
-      <li className="list-inline-item active"> <span id={`carousel-selector-${index}`} className={`${index === 0 ? "selected" : null}`} data-slide-to={convertToString(index)} data-target="#custCarousel"> <img src={image.sizeTwoHundred} className="img-fluid" alt="Hotel" /> </span> </li>
+      <li key={index} className="list-inline-item active"> <span id={`carousel-selector-${index}`} className={`${index === 0 ? "selected" : null}`} data-slide-to={convertToString(index)} data-target="#custCarousel"> <img src={image.sizeTwoHundred} className="img-fluid" alt="Hotel" /> </span> </li>
 
 
     ))
 
 
   } else {
-    carouselItemLarge = <Spinners label="Sorry no photos" styles={{ marginTop: "50px" }} />
+    // carouselItemLarge = <Spinners label="Sorry no photos" styles={{ marginTop: "50px" }} />
     carouselItemSmall = <Spinners label="Sorry no photos" styles={{ marginTop: "50px" }} />
   }
   return (
@@ -50,7 +49,7 @@ function Carousel({ name, locality, images }) {
 
 
             </div><a className="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span className="carousel-control-prev-icon"></span> </a> <a className="carousel-control-next" href="#custCarousel" data-slide="next"> <span className="carousel-control-next-icon"></span> </a>
-            <Rating />
+            <Rating value={rating} />
             <ol className="carousel-indicators list-inline">
               {carouselItemSmall}
 

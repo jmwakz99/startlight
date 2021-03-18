@@ -1,3 +1,6 @@
+import ReactDOM from "react-dom";
+import Rating from "../components/Rating/Rating";
+
 export const extractImages = (hotel) => {
   let allImages = [];
   let urls = Object.values(hotel.venue.responsive_images.urls);
@@ -16,11 +19,6 @@ export const extractImages = (hotel) => {
 
 
   }
-
-
-
-
-
   return allImages;
 
 
@@ -29,3 +27,32 @@ export const extractImages = (hotel) => {
 export const convertToString = (value) => (
   value.toString()
 )
+
+
+export const checkStars = (value) => {
+  let allStars = document.getElementsByClassName("fa-star");
+  if (allStars.length > 0) {
+    for (let i = 0; i < Math.floor(value); i++) {
+      for (let count = 0; count < allStars.length; count++) {
+        if (i === count) {
+          allStars[count].classList.add("checked");
+          allStars[count].classList.remove("unchecked");
+
+        }
+
+
+      }
+
+
+
+
+    }
+
+  }
+
+
+
+
+
+
+}
