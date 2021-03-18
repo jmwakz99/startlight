@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import ApiService from "./services/ApiService";
+import { extractImages } from "./utils/general";
 import Navigation from "./parts/Navigation/Navigation";
 import HotelDetails from "./pages/HotelDetails/HotelDetails";
 import Home from "./pages/Home/Home";
@@ -23,9 +24,33 @@ class App extends Component {
 
   componentDidMount() {
     ApiService.getHotels().then(hotels => {
-      this.setState({
-        hotels: hotels
-      })
+
+      let extractedHotels = [];
+
+      hotels.forEach((hotel) => {
+        extractedHotels.push({
+          name: hotel.venue.name,
+          neighborhood: hotel.venue.location.neighborhood,
+          rating: hotel.venue.rating,
+          images: extractImages(hotel),
+          id: hotel.venue.id.resy
+
+
+        })
+
+
+
+      }
+
+
+      )
+      if (hotels.length === extractedHotels.length) {
+        this.setState({
+          hotels: extractedHotels
+        })
+
+      }
+
 
     }).catch(error => {
       console.log(error)
@@ -33,6 +58,7 @@ class App extends Component {
 
   }
   render() {
+
     return (
       <Router>
         <div className="App">

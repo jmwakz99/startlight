@@ -1,9 +1,29 @@
 import React from 'react'
 
 
+import { convertToString } from "../../utils/general";
+import Spinners from "../../components/Spinners/Spinners";
+import Rating from "../../components/Rating/Rating";
 import "./Carousel.css";
 function Carousel({ name, locality, images }) {
-  console.log(images)
+  let carouselItemLarge;
+  let carouselItemSmall;
+  if (images.length > 0) {
+    carouselItemLarge = images.map((image, index) => (
+      <div className={`carousel-item ${index === 0 ? 'active' : null}`}> <img src={image.sizeEightHundred} alt="Hotel" /> </div>
+
+    ))
+    carouselItemSmall = images.map((image, index) => (
+      <li className="list-inline-item active"> <span id={`carousel-selector-${index}`} className={`${index === 0 ? "selected" : null}`} data-slide-to={convertToString(index)} data-target="#custCarousel"> <img src={image.sizeTwoHundred} className="img-fluid" alt="Hotel" /> </span> </li>
+
+
+    ))
+
+
+  } else {
+    carouselItemLarge = <Spinners label="Sorry no photos" styles={{ marginTop: "50px" }} />
+    carouselItemSmall = <Spinners label="Sorry no photos" styles={{ marginTop: "50px" }} />
+  }
   return (
     <div className="container">
       <div className="row">
@@ -26,16 +46,14 @@ function Carousel({ name, locality, images }) {
         <div className="col-md-12">
           <div id="custCarousel" className="carousel slide" data-ride="carousel" align="center">
             <div className="carousel-inner">
-              <div className="carousel-item active"> <img src="https://i.imgur.com/weXVL8M.jpg" alt="Hotel" /> </div>
-              <div className="carousel-item"> <img src="https://i.imgur.com/Rpxx6wU.jpg" alt="Hotel" /> </div>
-              <div className="carousel-item"> <img src="https://i.imgur.com/83fandJ.jpg" alt="Hotel" /> </div>
-              <div className="carousel-item"> <img src="https://i.imgur.com/JiQ9Ppv.jpg" alt="Hotel" /> </div>
+              {carouselItemLarge}
+
+
             </div><a className="carousel-control-prev" href="#custCarousel" data-slide="prev"> <span className="carousel-control-prev-icon"></span> </a> <a className="carousel-control-next" href="#custCarousel" data-slide="next"> <span className="carousel-control-next-icon"></span> </a>
+            <Rating />
             <ol className="carousel-indicators list-inline">
-              <li className="list-inline-item active"> <span id="carousel-selector-0" className="selected" data-slide-to="0" data-target="#custCarousel"> <img src="https://i.imgur.com/weXVL8M.jpg" className="img-fluid" alt="Hotel" /> </span> </li>
-              <li className="list-inline-item"> <span id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel"> <img src="https://i.imgur.com/Rpxx6wU.jpg" className="img-fluid" alt="Hotel" /> </span> </li>
-              <li className="list-inline-item"> <span id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel"> <img src="https://i.imgur.com/83fandJ.jpg" className="img-fluid" alt="Hotel" /> </span> </li>
-              <li className="list-inline-item"> <span id="carousel-selector-2" data-slide-to="3" data-target="#custCarousel"> <img src="https://i.imgur.com/JiQ9Ppv.jpg" className="img-fluid" alt="Hotel" /> </span> </li>
+              {carouselItemSmall}
+
             </ol>
           </div>
         </div>

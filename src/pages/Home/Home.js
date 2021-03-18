@@ -16,7 +16,6 @@ class Home extends Component {
 
   render() {
     const { history, hotels } = this.props;
-    console.log(hotels)
     const { currentPage, itemsPerPage } = this.state;
     let hotelList;
     let indexOfLastItem = currentPage * itemsPerPage;
@@ -49,7 +48,7 @@ class Home extends Component {
 
 
       hotelList = currentItems.map(hotel => (
-        <Card key={hotel.id} name={hotel.name} onClick={() => history.push({ pathname: `/hotel/${hotel.id}`, state: { item: hotel } })} neighbourhood={hotel.neighbourhood} image={hotel.optimizedThumbUrls.srpDesktop} />
+        <Card key={hotel.name} name={hotel.name} onClick={() => history.push({ pathname: `/hotel/${hotel.id}`, state: { item: hotel } })} neighborhood={hotel.neighborhood} image={hotel && hotel.images[0]} />
 
 
       ))

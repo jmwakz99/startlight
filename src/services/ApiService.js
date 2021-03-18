@@ -1,30 +1,15 @@
 import axios from "axios";
-import { optionsSearchHotels, optionsSearchHotelImages, optionsSearchHotelDetails } from "./ApiConfig";
+import { optionsSearchHotels } from "./ApiConfig";
+
+const data = require('../utils/getUserLocation.json');
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
   getHotels: async function (lat, lon) {
     try {
-      const response = await axios.request(optionsSearchHotels(lat, lon));
-      return response.data.data.body.searchResults.results;
-
-    } catch (error) {
-      throw error
-    }
-  },
-  getHotelImages: async function (id) {
-    try {
-      const response = await axios.request(optionsSearchHotelImages(id));
-      return response.data.hotelImages.filter((image, index) => index < 4);
-
-    } catch (error) {
-      throw error;
-    }
-  },
-  getHotelDetails: async function (id) {
-    try {
-      const response = await axios.request(optionsSearchHotelDetails());
-      return response.data.data.body.searchResults.results;
+      // const response = await axios.request(optionsSearchHotels(lat, lon));
+      // console.log(response.data.results.venues);
+      return data.results.venues;
 
     } catch (error) {
       throw error

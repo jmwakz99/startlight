@@ -12,26 +12,14 @@ class HotelDetails extends Component {
       images: []
     }
   }
-  componentDidMount() {
-    const { id } = this.props.match.params;
-    if (id) {
-      ApiService.getHotelImages(id).then(res => {
-        this.setState({
-          images: res
-        })
 
-      }).catch(err => console.log(err))
-
-    }
-
-
-  }
   render() {
-    const { name, address: { locality } } = this.props.location.state.item;
-    const { images } = this.state;
+    const { name, neighborhood, images } = this.props.location.state.item;
+    console.log(images)
+
     return (
       <div>
-        <Carousel images={images} name={name} locality={locality} />
+        <Carousel images={images} name={name} locality={neighborhood} />
         <div className="pt-5 mt-5 pb-5">
           <div className="text-center w-75 mx-auto text-muted">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit,
