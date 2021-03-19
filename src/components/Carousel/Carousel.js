@@ -4,6 +4,7 @@ import { convertToString } from "../../utils/general";
 import Spinners from "../../components/Spinners/Spinners";
 import Rating from "../../components/Rating/Rating";
 import "./Carousel.css";
+
 function Carousel({ name, locality, images, rating }) {
   let carouselItemLarge;
   let carouselItemSmall;

@@ -1,8 +1,9 @@
+
+
 export const optionsSearchHotels = (lat, lon) => (
   {
     method: 'GET',
-    url: 'https://rapidapi.com/yahoo.finance.low.latency/api/resy',
-    // url: 'https://resy.p.rapidapi.com/4/find',
+    url: 'https://resy.p.rapidapi.com/4/find',
     params: {
       lat: lat,
       long: lon,
@@ -11,7 +12,7 @@ export const optionsSearchHotels = (lat, lon) => (
       offset: "0"
     },
     headers: {
-      'x-rapidapi-key': 'fa54c73a15mshd49225cae4712cbp1d2097jsnf883dde18db7',
+      'x-rapidapi-key': "0aa058d2c8mshccbda44a55c2a01p1a8a54jsn0ee4bccdf476",
       'x-rapidapi-host': 'resy.p.rapidapi.com'
     }
   }

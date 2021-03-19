@@ -25,11 +25,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getHotels()
-
-
-
-
+    this.getHotels();
 
   }
   getHotels = () => {
@@ -71,8 +67,6 @@ class App extends Component {
     })
 
   }
-  // This won't populate the required hotels based on the current user location
-  // The reason is the api provider only accepts these coords lat=37.788719679657554 long=-122.40057774847898
   checkUserCurrentLocation = () => {
     ApiService.getUserLocation(({ coords: { latitude, longitude } }) => {
       this.setState({
