@@ -30,7 +30,7 @@
 lat = 37.788719679657554
 long = -122.40057774847898
 
-when you try to use different coords apart from these the venue field from the json response is empty.
+when you try to use different coordinates apart from these the venue field from the json response is empty.
 
 Please also note that the API has its limitations;
 1. One call per second
