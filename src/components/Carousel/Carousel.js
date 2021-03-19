@@ -7,7 +7,7 @@ import "./Carousel.css";
 function Carousel({ name, locality, images, rating }) {
   let carouselItemLarge;
   let carouselItemSmall;
-  if (images.length > 0) {
+  if (images && images.length > 0) {
     carouselItemLarge = images.map((image, index) => (
       <div key={index} className={`carousel-item ${index === 0 ? 'active' : null}`}> <img src={image.sizeEightHundred} alt="Hotel" /> </div>
 

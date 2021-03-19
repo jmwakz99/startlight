@@ -58,6 +58,10 @@ export const checkStars = (value) => {
 
 
 export const reduceDescriptionWords = (text) => {
-  return text.split(" ").splice(0, 9).join(" ");
+
+  if (!text) return;
+  let i = text.split(" ").splice(0).length - (text.split(" ").splice(0).length - 9)
+
+  return text.split(" ").splice(0, i).join(" ");
 }
 

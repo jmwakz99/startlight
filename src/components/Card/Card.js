@@ -5,7 +5,7 @@ import "./Card.css"
 function Card({ name, neighborhood, image, description, onClick }) {
   return (
 
-    <div className="col-md-6 mt-5 col-sm-12 item">
+    <div className="col-md-6 mt-5 col-sm-12 item" data-testid="card">
       <div className="card item-card card-block">
         <img title="view details" src={(image && image.sizeTwoHundred) || "https://image.resy.com/3/003/2/20368/05e91370d52e43a708dc9bbfd7b62a8a709ce505/jpg/1:1/200"} alt="Hotel" onClick={onClick} />
         <div className="item-card__title mt-3 mb-3">
