@@ -25,7 +25,7 @@
 
 
 ```
-<strong>NOTE: I discovered that the API providers only accepts coords;</strong>
+<strong>NOTE: I discovered that the API providers only accepts these coordinates;</strong>
 ```
 lat = 37.788719679657554
 long = -122.40057774847898
