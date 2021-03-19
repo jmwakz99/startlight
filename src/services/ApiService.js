@@ -1,5 +1,5 @@
-import axios from "axios";
-import { optionsSearchHotels } from "./ApiConfig";
+// import axios from "axios";
+// import { optionsSearchHotels } from "./ApiConfig";
 
 const data = require('../utils/getUserLocation.json');
 
@@ -8,21 +8,21 @@ export default {
   getHotels: async function (lat, lon) {
     try {
       // const response = await axios.request(optionsSearchHotels(lat, lon));
-      // console.log(response.data.results.venues);
       return data.results.venues;
+      // return response.data.results.venues;
 
     } catch (error) {
       throw error
     }
   },
-  // getUserLocation: function () {
-  //   try {
-  //     const response = navigator.geolocation.getCurrentPosition;
-  //     return response;
+  getUserLocation: function (onSuccess, onError) {
+    try {
+      const response = navigator.geolocation.getCurrentPosition(onSuccess, onError);
+      return response;
 
-  //   } catch (error) {
-  //     throw error
-  //   }
-  // }
+    } catch (error) {
+      throw error
+    }
+  }
 
 }

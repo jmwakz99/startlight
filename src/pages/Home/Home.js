@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-
 import Pagination from "../../components/Pagination/Pagination";
 import Spinners from "../../components/Spinners/Spinners";
-import Card from "../../components/Card/Card"
+import Card from "../../components/Card/Card";
+
 class Home extends Component {
   constructor() {
     super();
@@ -23,6 +23,7 @@ class Home extends Component {
     let currentItems = hotels.slice(indexOfFirstItem, indexOfLastItem);
 
     let paginate = pageNum => this.setState({ currentPage: pageNum });
+    // ensure user can't continue clicking the next or previous pagination button when all items have been listed
     let nextPage = () => {
       if (this.state.currentPage >= Math.ceil(hotels.length / 10)) {
         return;
@@ -33,6 +34,7 @@ class Home extends Component {
       }
 
     };
+
     let prevPage = () => {
       if (this.state.currentPage <= 1) {
         return;
@@ -45,10 +47,8 @@ class Home extends Component {
     };
 
     if (hotels.length > 0) {
-
-
       hotelList = currentItems.map(hotel => (
-        <Card key={hotel.name} name={hotel.name} onClick={() => history.push({ pathname: `/hotel/${hotel.id}`, state: { item: hotel } })} neighborhood={hotel.neighborhood} image={hotel && hotel.images[0]} />
+        <Card key={hotel.name} name={hotel.name} description={hotel.description} onClick={() => history.push({ pathname: `/hotel/${hotel.id}`, state: { item: hotel } })} neighborhood={hotel.neighborhood} image={hotel && hotel.images[0]} />
 
 
       ))
@@ -58,7 +58,6 @@ class Home extends Component {
     }
     return (
       <div className="container item-container-wrapper pt-2 mt-3">
-
         <div className="row mx-auto w-75">
           {hotelList}
 

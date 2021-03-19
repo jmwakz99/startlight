@@ -1,5 +1,3 @@
-import ReactDOM from "react-dom";
-import Rating from "../components/Rating/Rating";
 
 export const extractImages = (hotel) => {
   let allImages = [];
@@ -56,3 +54,10 @@ export const checkStars = (value) => {
 
 
 }
+
+
+
+export const reduceDescriptionWords = (text) => {
+  return text.split(" ").splice(0, 9).join(" ");
+}
+

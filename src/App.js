@@ -11,19 +11,30 @@ import { extractImages } from "./utils/general";
 import Navigation from "./parts/Navigation/Navigation";
 import HotelDetails from "./pages/HotelDetails/HotelDetails";
 import Home from "./pages/Home/Home";
-import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       hotels: [],
+      lat: 37.788719679657554,
+      long: -122.40057774847898
+
 
     }
   }
 
   componentDidMount() {
-    ApiService.getHotels().then(hotels => {
+    this.getHotels()
+
+
+
+
+
+  }
+  getHotels = () => {
+    const { lat, long } = this.state;
+    ApiService.getHotels(lat, long).then(hotels => {
 
       let extractedHotels = [];
 
@@ -33,6 +44,7 @@ class App extends Component {
           neighborhood: hotel.venue.location.neighborhood,
           rating: hotel.venue.rating,
           images: extractImages(hotel),
+          description: "Praesent finibus tortor nunc, in sodales sapien consectetur id. Aenean condimentum lacus erat, quis aliquam nibh venenatis nec. Duis nec vehicula magna, non finibus ipsum.",
           id: hotel.venue.id.resy
 
 
@@ -49,6 +61,8 @@ class App extends Component {
           hotels: extractedHotels
         })
 
+
+
       }
 
 
@@ -57,7 +71,24 @@ class App extends Component {
     })
 
   }
+  // This won't populate the required hotels based on the current user location
+  // The reason is the api provider only accepts these coords lat=37.788719679657554 long=-122.40057774847898
+  checkUserCurrentLocation = () => {
+    ApiService.getUserLocation(({ coords: { latitude, longitude } }) => {
+      this.setState({
+        lat: latitude,
+        long: longitude
+      })
+
+
+
+    }, (error) => {
+      console.log(error)
+    })
+
+  }
   render() {
+
 
     return (
       <Router>

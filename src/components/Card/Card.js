@@ -1,12 +1,13 @@
 import React from "react";
 
+import { reduceDescriptionWords } from "../../utils/general";
 import "./Card.css"
-function Card({ name, neighborhood, image, onClick }) {
+function Card({ name, neighborhood, image, description, onClick }) {
   return (
 
     <div className="col-md-6 mt-5 col-sm-12 item">
       <div className="card item-card card-block">
-        <img title="view details" src={image && image.sizeEightHundred || "https://image.resy.com/3/003/2/20368/05e91370d52e43a708dc9bbfd7b62a8a709ce505/jpg/1:1/200"} alt="Hotel" onClick={onClick} />
+        <img title="view details" src={(image && image.sizeTwoHundred) || "https://image.resy.com/3/003/2/20368/05e91370d52e43a708dc9bbfd7b62a8a709ce505/jpg/1:1/200"} alt="Hotel" onClick={onClick} />
         <div className="item-card__title mt-3 mb-3">
           <span className="item-card__title__name"><span className="item-card__title__name_badge small">{name}</span></span>
           <span className="item-card__title__neighbourhood"><span className="badge badge-pill badge-light"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -14,7 +15,7 @@ function Card({ name, neighborhood, image, onClick }) {
             <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
           </svg> {neighborhood}</span></span>
         </div>
-        <div className="item-card__card-text text-muted">Sed imperdiet velit est, faucibus tortor tincidunt.</div>
+        <div className="item-card__card-text text-muted pb-3">{reduceDescriptionWords(description)}</div>
       </div>
     </div>
 

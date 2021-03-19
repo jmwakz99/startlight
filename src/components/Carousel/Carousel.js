@@ -4,7 +4,7 @@ import { convertToString } from "../../utils/general";
 import Spinners from "../../components/Spinners/Spinners";
 import Rating from "../../components/Rating/Rating";
 import "./Carousel.css";
-function Carousel({ name, locality, images, rating, refresh }) {
+function Carousel({ name, locality, images, rating }) {
   let carouselItemLarge;
   let carouselItemSmall;
   if (images.length > 0) {
@@ -20,7 +20,6 @@ function Carousel({ name, locality, images, rating, refresh }) {
 
 
   } else {
-    // carouselItemLarge = <Spinners label="Sorry no photos" styles={{ marginTop: "50px" }} />
     carouselItemSmall = <Spinners label="Sorry no photos" styles={{ marginTop: "50px" }} />
   }
   return (
